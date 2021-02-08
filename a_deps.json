@@ -1,0 +1,458 @@
+{
+  "graph": {
+    "nodes": {
+      "a-e2e": {
+        "name": "a-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/a-e2e",
+          "sourceRoot": "apps/a-e2e/src",
+          "projectType": "application",
+          "targets": {
+            "e2e": {
+              "executor": "@nrwl/cypress:cypress",
+              "options": {
+                "cypressConfig": "apps/a-e2e/cypress.json",
+                "tsConfig": "apps/a-e2e/tsconfig.e2e.json",
+                "devServerTarget": "a:serve"
+              },
+              "configurations": {
+                "production": {
+                  "devServerTarget": "a:serve:production"
+                }
+              }
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "options": {
+                "lintFilePatterns": [
+                  "apps/a-e2e/**/*.{js,ts}"
+                ]
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/a-e2e/.eslintrc.json",
+              "hash": "595f51e4079b39bb889b3f3aab47116164141965",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a-e2e/cypress.json",
+              "hash": "0571f751b6ed3a95fdd3f72af28f13ba8b751b24",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a-e2e/src/fixtures/example.json",
+              "hash": "294cbed6ce9e0b948b787452e8676aee486cb3be",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a-e2e/src/integration/app.spec.ts",
+              "hash": "281837659acaa034ed281ad7d028265f6b02fab6",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a-e2e/src/plugins/index.js",
+              "hash": "9067e75a258dadf5a02b2a91c64f5acee1af17fd",
+              "ext": ".js"
+            },
+            {
+              "file": "apps/a-e2e/src/support/app.po.ts",
+              "hash": "32934246969c2ecb827ac05677785933a707a54d",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a-e2e/src/support/commands.ts",
+              "hash": "310f1fa0e043ffebbbcf575c5a4d17f13a6b14d6",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a-e2e/src/support/index.ts",
+              "hash": "3d469a6b6cf31eb66117d73e278bcf74f398f1db",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a-e2e/tsconfig.e2e.json",
+              "hash": "9dc3660a79ee2f6daf097b4930427223896e3b25",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a-e2e/tsconfig.json",
+              "hash": "08841a7f56c62d55340ad08451502304837254fd",
+              "ext": ".json"
+            }
+          ]
+        }
+      },
+      "c": {
+        "name": "c",
+        "type": "lib",
+        "data": {
+          "root": "libs/c",
+          "sourceRoot": "libs/c/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "options": {
+                "lintFilePatterns": [
+                  "libs/c/**/*.ts"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/libs/c"
+              ],
+              "options": {
+                "jestConfig": "libs/c/jest.config.js",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [
+            "a",
+            "b"
+          ],
+          "files": [
+            {
+              "file": "libs/c/.eslintrc.json",
+              "hash": "fea46111a20ae8689af46385367f70421bb9b054",
+              "ext": ".json"
+            },
+            {
+              "file": "libs/c/jest.config.js",
+              "hash": "08ee7e3ccaf8ba3f756a8d4d68cdf9bff6c95f9f",
+              "ext": ".js"
+            },
+            {
+              "file": "libs/c/README.md",
+              "hash": "c4836028f575a27c21da042922409f22f571360b",
+              "ext": ".md"
+            },
+            {
+              "file": "libs/c/src/index.ts",
+              "hash": "7e7974c3e97f06ac12ee3f83e2978cfd804245cd",
+              "ext": ".ts"
+            },
+            {
+              "file": "libs/c/src/lib/c.spec.ts",
+              "hash": "d56c8edb7beabcc491a2f23b8830d9784cbb5a63",
+              "ext": ".ts"
+            },
+            {
+              "file": "libs/c/src/lib/c.ts",
+              "hash": "7e970a6e994afe09821fc994baebd0c9053d7412",
+              "ext": ".ts"
+            },
+            {
+              "file": "libs/c/tsconfig.json",
+              "hash": "62ebbd946474cea997e774d20fffc4d585c184f3",
+              "ext": ".json"
+            },
+            {
+              "file": "libs/c/tsconfig.lib.json",
+              "hash": "45c1464b3d347b884ff0b607e9ffbbb8cd730b8c",
+              "ext": ".json"
+            },
+            {
+              "file": "libs/c/tsconfig.spec.json",
+              "hash": "559410b96af6781ac3e7cf348bf4a710b4009481",
+              "ext": ".json"
+            }
+          ]
+        }
+      },
+      "d": {
+        "name": "d",
+        "type": "lib",
+        "data": {
+          "root": "libs/d",
+          "sourceRoot": "libs/d/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "options": {
+                "lintFilePatterns": [
+                  "libs/d/**/*.ts"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/libs/d"
+              ],
+              "options": {
+                "jestConfig": "libs/d/jest.config.js",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [
+            "b"
+          ],
+          "files": [
+            {
+              "file": "libs/d/.eslintrc.json",
+              "hash": "fea46111a20ae8689af46385367f70421bb9b054",
+              "ext": ".json"
+            },
+            {
+              "file": "libs/d/jest.config.js",
+              "hash": "baccc2e4630c0a161f3cf013c674bb4f703b667b",
+              "ext": ".js"
+            },
+            {
+              "file": "libs/d/README.md",
+              "hash": "9690283b9b1b92a0eef70c60fe604b01f6c9a246",
+              "ext": ".md"
+            },
+            {
+              "file": "libs/d/src/index.ts",
+              "hash": "458c6c226081ba89ae0784cf066701425eea3a71",
+              "ext": ".ts"
+            },
+            {
+              "file": "libs/d/src/lib/d.spec.ts",
+              "hash": "21bca8954964c887ccc7e5d822204e8cb4e23999",
+              "ext": ".ts"
+            },
+            {
+              "file": "libs/d/src/lib/d.ts",
+              "hash": "984dbada4c794aa3084f7104d0bb0d14cd6c9970",
+              "ext": ".ts"
+            },
+            {
+              "file": "libs/d/tsconfig.json",
+              "hash": "62ebbd946474cea997e774d20fffc4d585c184f3",
+              "ext": ".json"
+            },
+            {
+              "file": "libs/d/tsconfig.lib.json",
+              "hash": "45c1464b3d347b884ff0b607e9ffbbb8cd730b8c",
+              "ext": ".json"
+            },
+            {
+              "file": "libs/d/tsconfig.spec.json",
+              "hash": "559410b96af6781ac3e7cf348bf4a710b4009481",
+              "ext": ".json"
+            }
+          ]
+        }
+      },
+      "a": {
+        "name": "a",
+        "type": "app",
+        "data": {
+          "root": "apps/a",
+          "sourceRoot": "apps/a/src",
+          "projectType": "application",
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/apps/a",
+                "index": "apps/a/src/index.html",
+                "main": "apps/a/src/main.tsx",
+                "polyfills": "apps/a/src/polyfills.ts",
+                "tsConfig": "apps/a/tsconfig.app.json",
+                "assets": [
+                  "apps/a/src/favicon.ico",
+                  "apps/a/src/assets"
+                ],
+                "styles": [],
+                "scripts": [],
+                "webpackConfig": "@nrwl/react/plugins/webpack"
+              },
+              "configurations": {
+                "production": {
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/a/src/environments/environment.ts",
+                      "with": "apps/a/src/environments/environment.prod.ts"
+                    }
+                  ],
+                  "optimization": true,
+                  "outputHashing": "all",
+                  "sourceMap": false,
+                  "extractCss": true,
+                  "namedChunks": false,
+                  "extractLicenses": true,
+                  "vendorChunk": false,
+                  "budgets": [
+                    {
+                      "type": "initial",
+                      "maximumWarning": "2mb",
+                      "maximumError": "5mb"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve": {
+              "executor": "@nrwl/web:dev-server",
+              "options": {
+                "buildTarget": "a:build"
+              },
+              "configurations": {
+                "production": {
+                  "buildTarget": "a:build:production"
+                }
+              }
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "options": {
+                "lintFilePatterns": [
+                  "apps/a/**/*.{ts,tsx,js,jsx}"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/apps/a"
+              ],
+              "options": {
+                "jestConfig": "apps/a/jest.config.js",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/a/.babelrc",
+              "hash": "7e024b83a4920acf40eddc4fcc5f5b93bc92d1d9",
+              "ext": ""
+            },
+            {
+              "file": "apps/a/.browserslistrc",
+              "hash": "f1d12df4faa25ab7f0f03196105e957395f609af",
+              "ext": ""
+            },
+            {
+              "file": "apps/a/.eslintrc.json",
+              "hash": "b8b29b78f406491c8a9e40e042e6738fc5629865",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a/babel-jest.config.json",
+              "hash": "bf04d5f81f7c40fce68a2e051f1d4652f7b7c9c9",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a/jest.config.js",
+              "hash": "e5552e0155fc686a596312a3d6b2a194b3754276",
+              "ext": ".js"
+            },
+            {
+              "file": "apps/a/src/app/app.spec.tsx",
+              "hash": "481a0942445d114413138acdb855e66a86d0f7d8",
+              "ext": ".tsx"
+            },
+            {
+              "file": "apps/a/src/app/app.tsx",
+              "hash": "d9d5d15f5870c5820b6bbc999a3488036c7822c8",
+              "ext": ".tsx"
+            },
+            {
+              "file": "apps/a/src/app/logo.svg",
+              "hash": "8fa84ab5092a65217b22dd0be03de5c6aea9a648",
+              "ext": ".svg"
+            },
+            {
+              "file": "apps/a/src/app/star.svg",
+              "hash": "901053d3854900761496d4077229c1633391b272",
+              "ext": ".svg"
+            },
+            {
+              "file": "apps/a/src/assets/.gitkeep",
+              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "ext": ""
+            },
+            {
+              "file": "apps/a/src/environments/environment.prod.ts",
+              "hash": "c9669790be176ac85a5d8c11278875c2f52dc507",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a/src/environments/environment.ts",
+              "hash": "7ed83767fff25adfed19d52b2821a432f8ed18b1",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a/src/favicon.ico",
+              "hash": "317ebcb2336e0833a22dddf0ab287849f26fda57",
+              "ext": ".ico"
+            },
+            {
+              "file": "apps/a/src/index.html",
+              "hash": "c6e2a32795829054206e5ea2a08c00274b48e898",
+              "ext": ".html"
+            },
+            {
+              "file": "apps/a/src/main.tsx",
+              "hash": "8a7aca13a2205b81860436c57b039a18324ec12c",
+              "ext": ".tsx"
+            },
+            {
+              "file": "apps/a/src/polyfills.ts",
+              "hash": "2adf3d05b6fcf479dd61c74f6bda95d9edb6ac6b",
+              "ext": ".ts"
+            },
+            {
+              "file": "apps/a/tsconfig.app.json",
+              "hash": "71adee65df4adff8cef06bc8f88c25baa519bd54",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a/tsconfig.json",
+              "hash": "def62c441ed331d653e9f0c935cd0dd97d4b2923",
+              "ext": ".json"
+            },
+            {
+              "file": "apps/a/tsconfig.spec.json",
+              "hash": "fee141bb0e94dd45e39790186c49cac7dcf470c2",
+              "ext": ".json"
+            }
+          ]
+        }
+      }
+    },
+    "dependencies": {
+      "a-e2e": [
+        {
+          "type": "implicit",
+          "source": "a-e2e",
+          "target": "a"
+        }
+      ],
+      "c": [
+        {
+          "type": "static",
+          "source": "c",
+          "target": "d"
+        }
+      ],
+      "d": [],
+      "a": [
+        {
+          "type": "static",
+          "source": "a",
+          "target": "c"
+        }
+      ]
+    }
+  },
+  "affectedProjects": [],
+  "criticalPath": []
+}
