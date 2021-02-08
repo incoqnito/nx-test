@@ -266,6 +266,105 @@
           }
         }
       }
+    },
+    "lambda": {
+      "root": "apps/lambda",
+      "sourceRoot": "apps/lambda/src",
+      "projectType": "application",
+      "prefix": "lambda",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/lambda",
+            "main": "apps/lambda/src/main.ts",
+            "tsConfig": "apps/lambda/tsconfig.app.json",
+            "assets": [
+              "apps/lambda/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/lambda/src/environments/environment.ts",
+                  "with": "apps/lambda/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "lambda:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lambda/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/lambda"
+          ],
+          "options": {
+            "jestConfig": "apps/lambda/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lambda-lib": {
+      "root": "libs/lambda-lib",
+      "sourceRoot": "libs/lambda-lib/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lambda-lib/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lambda-lib"
+          ],
+          "options": {
+            "jestConfig": "libs/lambda-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/lambda-lib",
+            "tsConfig": "libs/lambda-lib/tsconfig.lib.json",
+            "packageJson": "libs/lambda-lib/package.json",
+            "main": "libs/lambda-lib/src/index.ts",
+            "assets": [
+              "libs/lambda-lib/*.md"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

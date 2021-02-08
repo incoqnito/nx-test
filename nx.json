@@ -21,6 +21,8 @@
     "a": { "tags": [] },
     "a-e2e": { "tags": [], "implicitDependencies": ["a"] },
     "b": { "tags": [] },
-    "b-e2e": { "tags": [], "implicitDependencies": ["b"] }
+    "b-e2e": { "tags": [], "implicitDependencies": ["b"] },
+    "lambda": { "tags": [] },
+    "lambda-lib": { "tags": [] }
   }
 }
