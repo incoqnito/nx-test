@@ -274,7 +274,7 @@
       "prefix": "lambda",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:build",
+          "executor": "./tools/builders/typescript:compile",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -350,18 +350,14 @@
           }
         },
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "./tools/builders/typescript:compile",
           "outputs": [
             "{options.outputPath}"
           ],
           "options": {
             "outputPath": "dist/libs/lambda-lib",
             "tsConfig": "libs/lambda-lib/tsconfig.lib.json",
-            "packageJson": "libs/lambda-lib/package.json",
-            "main": "libs/lambda-lib/src/index.ts",
-            "assets": [
-              "libs/lambda-lib/*.md"
-            ]
+            "main": "libs/lambda-lib/src/index.ts"
           }
         }
       }

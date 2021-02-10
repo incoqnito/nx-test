@@ -1,0 +1,9 @@
+{
+  "builders": {
+    "compile": {
+      "implementation": "./impl",
+      "schema": "./schema.json",
+      "description": "Compiles using the typscript compiler."
+    }
+  }
+}

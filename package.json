@@ -23,7 +23,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "build:tools": "tsc tools/builders/typescript/impl.ts --esModuleInterop"
   },
   "private": true,
   "devDependencies": {
@@ -43,12 +44,15 @@
     "@nrwl/workspace": "11.2.10",
     "@testing-library/react": "11.1.2",
     "@types/jest": "26.0.8",
+    "@types/merge-deep": "^3.0.0",
+    "@types/mkdirp": "^1.0.1",
     "@types/node": "12.12.38",
     "@types/react": "16.9.56",
     "@types/react-dom": "16.9.9",
     "@types/react-is": "16.7.1",
     "@types/react-router-dom": "5.1.6",
-    "@types/styled-components": "5.1.4",
+    "@types/recursive-readdir": "^2.2.0",
+    "@types/rimraf": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "4.3.0",
     "@typescript-eslint/parser": "4.3.0",
     "babel-jest": "26.2.2",
@@ -58,12 +62,18 @@
     "eslint": "7.10.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "fast-glob": "^3.2.5",
     "jest": "26.2.2",
+    "merge-deep": "^3.0.3",
+    "mkdirp": "^1.0.4",
+    "p-queue": "^6.6.2",
     "prettier": "2.2.1",
     "react": "^17.0.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "26.4.0",
     "ts-node": "~9.1.1",
-    "typescript": "~4.0.3"
+    "ts-node-builder": "^2.2.0",
+    "typescript": "^4.0.5"
   },
   "dependencies": {
     "core-js": "^3.6.5",
