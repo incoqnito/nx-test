@@ -6,5 +6,6 @@ module.exports = {
     "<rootDir>/apps/b",
     "<rootDir>/apps/lambda",
     "<rootDir>/libs/lambda-lib",
+    "<rootDir>/libs/lambda-lib-lib",
   ],
 };

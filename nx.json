@@ -23,6 +23,7 @@
     "b": { "tags": [] },
     "b-e2e": { "tags": [], "implicitDependencies": ["b"] },
     "lambda": { "tags": [] },
-    "lambda-lib": { "tags": [] }
+    "lambda-lib": { "tags": [] },
+    "lambda-lib-lib": { "tags": [] }
   }
 }

@@ -1,4 +1,5 @@
+import { lambdaLibLib } from '@monorepo-example/lambda-lib-lib'
+
 export function lambdaLib(): string {
-  throw new Error('lambda-lib')
-  return "lambda-lib";
+  return "lambda-lib " + lambdaLibLib()
 }

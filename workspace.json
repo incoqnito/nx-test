@@ -23,6 +23,17 @@
             "jestConfig": "libs/c/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "build": {
+          "executor": "./tools/builders/typescript:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/c",
+            "tsConfig": "libs/c/tsconfig.lib.json",
+            "main": "libs/c/src/index.ts"
+          }
         }
       }
     },
@@ -47,6 +58,17 @@
           "options": {
             "jestConfig": "libs/d/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "./tools/builders/typescript:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/d",
+            "tsConfig": "libs/d/tsconfig.lib.json",
+            "main": "libs/d/src/index.ts"
           }
         }
       }
@@ -360,6 +382,46 @@
             "outputPath": "dist/libs/lambda-lib",
             "tsConfig": "libs/lambda-lib/tsconfig.lib.json",
             "main": "libs/lambda-lib/src/index.ts"
+          }
+        }
+      }
+    },
+    "lambda-lib-lib": {
+      "root": "libs/lambda-lib-lib",
+      "sourceRoot": "libs/lambda-lib-lib/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lambda-lib-lib/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lambda-lib-lib"
+          ],
+          "options": {
+            "jestConfig": "libs/lambda-lib-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "./tools/builders/typescript:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/lambda-lib-lib",
+            "tsConfig": "libs/lambda-lib-lib/tsconfig.lib.json",
+            "packageJson": "libs/lambda-lib-lib/package.json",
+            "main": "libs/lambda-lib-lib/src/index.ts",
+            "assets": [
+              "libs/lambda-lib-lib/*.md"
+            ]
           }
         }
       }
