@@ -274,7 +274,7 @@
       "prefix": "lambda",
       "targets": {
         "build": {
-          "executor": "./tools/builders/typescript:compile",
+          "executor": "./tools/builders/typescript:build",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -301,9 +301,11 @@
           }
         },
         "serve": {
-          "executor": "@nrwl/node:execute",
+          "executor": "./tools/executors/typescript:watch",
           "options": {
-            "buildTarget": "lambda:build"
+            "outputPath": "dist/apps/lambda",
+            "main": "apps/lambda/src/main.ts",
+            "tsConfig": "apps/lambda/tsconfig.app.json"
           }
         },
         "lint": {
@@ -350,7 +352,7 @@
           }
         },
         "build": {
-          "executor": "./tools/builders/typescript:compile",
+          "executor": "./tools/builders/typescript:build",
           "outputs": [
             "{options.outputPath}"
           ],

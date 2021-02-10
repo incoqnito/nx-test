@@ -1,0 +1,9 @@
+{
+  "builders": {
+    "watch": {
+      "implementation": "./watchTypescript",
+      "schema": "./schema.json",
+      "description": "Watches using the typscript compiler."
+    }
+  }
+}

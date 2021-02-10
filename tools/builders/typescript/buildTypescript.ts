@@ -1,10 +1,8 @@
 import { json } from '@angular-devkit/core'
 import * as ts from 'typescript'
-import mergeDeep from 'merge-deep'
 import * as fs from 'fs'
 import * as path from 'path'
 import { promisify } from 'util'
-import glob from 'fast-glob'
 import PQueue from 'p-queue'
 import * as os from 'os'
 import mkdirp from 'mkdirp'
@@ -16,46 +14,9 @@ interface Options extends json.JsonObject {
   main: string;
 }
 
-interface JSONCompilerOptions extends Omit<ts.CompilerOptions, 'moduleResolution'> {
-  moduleResolution?: string;
-}
-
-interface TSConfig<TOptions = JSONCompilerOptions> {
-  extends?: string;
-  compilerOptions: TOptions;
-  include?: string[];
-  exclude?: string[];
-}
-
 const readFilePromise = promisify(fs.readFile)
 const writeFilePromise = promisify(fs.writeFile)
 const rimrafPromise = promisify(rimraf)
-
-const resolveTsConfigRecursive = async (configPath: string | undefined, basePath: string = process.cwd(), configs: TSConfig[] = []): Promise<TSConfig[]> => {
-  if (typeof configPath === 'undefined') {
-    return configs
-  }
-
-  const absoluteConfigPath = path.resolve(basePath, configPath)
-  const config: TSConfig = JSON.parse(await readFilePromise(absoluteConfigPath, 'utf-8'))
-  return resolveTsConfigRecursive(config.extends, path.dirname(absoluteConfigPath), [ config, ...configs ])
-}
-const resolveTsConfig = async (path: string): Promise<TSConfig<ts.CompilerOptions>> => {
-  const config: TSConfig = mergeDeep({}, ...await resolveTsConfigRecursive(path))
-
-  return {
-    ...config,
-    compilerOptions: parseJSONTSConfig(config.compilerOptions)
-  }
-}
-
-const parseJSONTSConfig = (config: JSONCompilerOptions): ts.CompilerOptions => ({
-  ...config,
-  moduleResolution: config.moduleResolution && (config.moduleResolution === 'node'
-    ? ts.ModuleResolutionKind.NodeJs
-    : ts.ModuleResolutionKind.Classic
-  )
-})
 
 export default async function compileTypescript(
   options: Options,
@@ -64,10 +25,14 @@ export default async function compileTypescript(
   try {
     const baseDir = path.dirname(path.resolve(process.cwd(), options.tsConfig))
     await rimrafPromise(options.outputPath)
-    const config = await resolveTsConfig(options.tsConfig)
+    const config = ts.parseJsonSourceFileConfigFileContent(
+      ts.readJsonConfigFile(options.tsConfig, ts.sys.readFile),
+      ts.sys,
+      baseDir
+    )
 
     const program = ts.createProgram([ path.resolve(options.main) ], {
-      ...config.compilerOptions,
+      ...config.options,
       noEmit: true
     })
     const emitResult = program.emit()
@@ -76,22 +41,16 @@ export default async function compileTypescript(
       .getPreEmitDiagnostics(program)
       .concat(emitResult.diagnostics)
 
-    const filePaths = await glob(config.include || '**/*.ts', {
-      cwd: baseDir,
-      ignore: config.exclude
-    })
-
     const queue = new PQueue({
       concurrency: os.cpus().length
     })
 
-    let success = true
-    for (const filePath of filePaths) {
+    for (const absoluteSourcePath of config.fileNames) {
       queue.add(async () => {
-        const absoluteSourcePath = path.resolve(baseDir, filePath)
+        const filePath = path.relative(baseDir, absoluteSourcePath)
         const source = await readFilePromise(absoluteSourcePath, 'utf-8')
         const transpiled = ts.transpileModule(source, {
-          compilerOptions: config.compilerOptions,
+          compilerOptions: config.options,
           fileName: filePath
         })
         ts.getPreEmitDiagnostics

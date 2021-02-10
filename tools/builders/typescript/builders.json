@@ -1,7 +1,7 @@
 {
   "builders": {
-    "compile": {
-      "implementation": "./impl",
+    "build": {
+      "implementation": "./buildTypescript",
       "schema": "./schema.json",
       "description": "Compiles using the typscript compiler."
     }
