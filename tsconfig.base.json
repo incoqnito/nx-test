@@ -15,8 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monorepo-example/c": ["libs/c/src/index.ts"],
-      "@monorepo-example/d": ["libs/d/src/index.ts"],
       "@monorepo-example/lambda-lib": ["libs/lambda-lib/src/index.ts"],
       "@monorepo-example/lambda-lib-lib": ["libs/lambda-lib-lib/src/index.ts"]
     }

@@ -16,12 +16,6 @@
     }
   },
   "projects": {
-    "c": { "tags": ["a", "b"] },
-    "d": { "tags": ["b"] },
-    "a": { "tags": [] },
-    "a-e2e": { "tags": [], "implicitDependencies": ["a"] },
-    "b": { "tags": [] },
-    "b-e2e": { "tags": [], "implicitDependencies": ["b"] },
     "lambda": { "tags": [] },
     "lambda-lib": { "tags": [] },
     "lambda-lib-lib": { "tags": [] }
