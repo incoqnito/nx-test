@@ -7,6 +7,8 @@ import PQueue from 'p-queue'
 import * as os from 'os'
 import mkdirp from 'mkdirp'
 import rimraf from 'rimraf'
+import linkDependencies from '../../shared/linkDependencies'
+import prettyMilliseconds from 'pretty-ms'
 
 interface Options extends json.JsonObject {
   outputPath: string;
@@ -23,6 +25,8 @@ export default async function compileTypescript(
   context
 ): Promise<{ success: boolean; }> {
   try {
+    const start = Date.now()
+
     const baseDir = path.dirname(path.resolve(process.cwd(), options.tsConfig))
     await rimrafPromise(options.outputPath)
     const config = ts.parseJsonSourceFileConfigFileContent(
@@ -30,6 +34,12 @@ export default async function compileTypescript(
       ts.sys,
       baseDir
     )
+
+    if (context.workspace.projects[context.projectName].projectType === 'application') {
+      await linkDependencies(context.projectName, true)
+    } else {
+      console.log('Skipped linking for library.')
+    }
 
     const program = ts.createProgram([ path.resolve(options.main) ], {
       ...config.options,
@@ -81,9 +91,14 @@ export default async function compileTypescript(
     }
 
     await queue.onIdle()
+    const success = !emitResult.emitSkipped
+
+    if (success) {
+      console.log(`Successfully compiled ${config.fileNames.length} files in ${prettyMilliseconds(Date.now() - start)}.`)
+    }
 
     return {
-      success: !emitResult.emitSkipped
+      success
     }
   } catch (error) {
     console.error(error)
